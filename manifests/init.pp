@@ -10,7 +10,7 @@ class dotnet {
     file { 'dotNetFx40_Full_x86_x64.exe':
       path   => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
       mode   => 0755,
-      source => 'puppet:///modules/cmsapp/dotNetFx40_Full_x86_x64.exe',
+      source => "http://${::servername}/dotnetcms/dotNetFx40_Full_x86_x64.exe",
       before => Package['Microsoft .NET Framework 4 Client Profile'],
     }
 
