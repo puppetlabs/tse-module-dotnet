@@ -13,10 +13,11 @@ class dotnet {
     }
 
     file { 'dotNetFx40_Full_x86_x64.exe':
-      path   => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
-      mode   => 0755,
-      owner => 'vagrant',
+      path    => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
+      mode    => 0755,
+      owner   => 'vagrant',
       require => Staging::File['dotNetFx40_Full_x86_x64.exe'],
+      before  => Package['Microsoft .NET Framework 4 Client Profile'],
     }
 
     package { 'Microsoft .NET Framework 4 Client Profile':
