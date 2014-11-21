@@ -7,17 +7,23 @@ class dotnet {
       when => pending,
     }
 
+    staging::file { 'dotNetFx40_Full_x86_x64.exe':
+      source => "http://${::servername}/dotnetcms/dotNetFx40_Full_x86_x64.exe",
+      before => Package['Microsoft .NET Framework 4 Client Profile'],
+    }
+
     file { 'dotNetFx40_Full_x86_x64.exe':
       path   => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
       mode   => 0755,
-      source => 'puppet:///modules/cmsapp/dotNetFx40_Full_x86_x64.exe',
-      before => Package['Microsoft .NET Framework 4 Client Profile'],
+      owner => 'vagrant',
+      require => Staging::File['dotNetFx40_Full_x86_x64.exe'],
     }
 
     package { 'Microsoft .NET Framework 4 Client Profile':
       ensure          => installed,
       source          => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
       install_options => ['/q', '/norestart'],
+      require => File['dotNetFx40_Full_x86_x64.exe'],
     }
 
     reboot { 'successful dotnet install':
