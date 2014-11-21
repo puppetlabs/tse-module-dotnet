@@ -21,7 +21,7 @@ class dotnet {
 
     package { 'Microsoft .NET Framework 4 Client Profile':
       ensure          => installed,
-      source          => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
+      source          => 'C:\staging\dotnet\dotNetFx40_Full_x86_x64.exe',
       install_options => ['/q', '/norestart'],
       require => File['dotNetFx40_Full_x86_x64.exe'],
     }
