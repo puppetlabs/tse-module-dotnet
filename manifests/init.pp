@@ -13,7 +13,7 @@ class dotnet {
     }
 
     file { 'dotNetFx40_Full_x86_x64.exe':
-      path    => 'C:\staging\dotNetFx40_Full_x86_x64.exe',
+      path    => 'C:\staging\dotnet\dotNetFx40_Full_x86_x64.exe',
       mode    => 0755,
       owner   => 'vagrant',
       require => Staging::File['dotNetFx40_Full_x86_x64.exe'],
