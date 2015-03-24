@@ -9,7 +9,7 @@ class dotnet {
 
     staging::file { 'dotNetFx40_Full_x86_x64.exe':
       source => "http://${::servername}/dotnetcms/dotNetFx40_Full_x86_x64.exe",
-      before => Package['Microsoft .NET Framework 4 Client Profile'],
+      before => Package['Microsoft .NET Framework 4 Extended'],
     }
 
     file { 'dotNetFx40_Full_x86_x64.exe':
@@ -17,10 +17,10 @@ class dotnet {
       mode    => 0755,
       owner   => 'vagrant',
       require => Staging::File['dotNetFx40_Full_x86_x64.exe'],
-      before  => Package['Microsoft .NET Framework 4 Client Profile'],
+      before  => Package['Microsoft .NET Framework 4 Extended'],
     }
 
-    package { 'Microsoft .NET Framework 4 Client Profile':
+    package { 'Microsoft .NET Framework 4 Extended':
       ensure          => installed,
       source          => 'C:\staging\dotnet\dotNetFx40_Full_x86_x64.exe',
       install_options => ['/q', '/norestart'],
@@ -28,7 +28,7 @@ class dotnet {
     }
 
     reboot { 'successful dotnet install':
-      subscribe => Package['Microsoft .NET Framework 4 Client Profile'],
+      subscribe => Package['Microsoft .NET Framework 4 Extended'],
     }
   }
 
